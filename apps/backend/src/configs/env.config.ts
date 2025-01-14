@@ -13,5 +13,8 @@ export const {
     GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET,
     GOOGLE_CALLBACK_URL,
+    NAVER_CLIENT_ID,
+    NAVER_CLIENT_SECRET,
+    Naver_CALLBACK_URL,
 
 } = process.env;

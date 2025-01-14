@@ -4,11 +4,12 @@ import { Strategy } from "passport-google-oauth20";
 import { UserRepository } from "src/repository/user.repository";
 import { GOOGLE_CALLBACK_URL, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from "src/configs/env.config";
 import { userProps } from "src/types/props";
+import { UserService } from "src/modules/user/user.service";
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, "google") {
     constructor(
-        private readonly userRepository: UserRepository
+        private readonly userService: UserService
     ) {
         super({
             clientID: GOOGLE_CLIENT_ID,
@@ -20,15 +21,10 @@ export class GoogleStrategy extends PassportStrategy(Strategy, "google") {
 
     async validate(accessToken: string, refreshToken: string, profile: any, done: Function) {
         const email = profile.emails[0].value;
-        const name = email.split("@")[0];
+        const name = profile.displayName;
         const picture = profile.photos[0].value;
 
-        let user = await this.userRepository.findUserByEmail(email);
-
-        if (!user) {
-            const newUser: userProps = { email, name, picture };
-            user = await this.userRepository.createUser(newUser);
-        }
+        const user = await this.userService.joinOrAlready(email, name, picture);
 
         done(null, user);
     }

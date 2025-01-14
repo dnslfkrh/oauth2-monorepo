@@ -4,14 +4,20 @@ import { User } from 'src/entity/user.entity';
 import { GoogleStrategy } from './strategies/google.strategy';
 import { AuthController } from './auth.controller';
 import { UserRepository } from 'src/repository/user.repository';
+import { NaverStrategy } from './strategies/naver.strategy';
+import { HttpModule } from '@nestjs/axios';
+import { UserService } from '../user/user.service';
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([User]),
+        HttpModule
     ],
     providers: [
+        UserService,
+        UserRepository,
         GoogleStrategy,
-        UserRepository
+        NaverStrategy,
     ],
     controllers: [
         AuthController
