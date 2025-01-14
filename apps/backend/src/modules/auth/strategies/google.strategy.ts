@@ -30,7 +30,6 @@ export class GoogleStrategy extends PassportStrategy(Strategy, "google") {
             user = await this.userRepository.createUser(newUser);
         }
 
-        console.log(user);
         done(null, user);
     }
 }
