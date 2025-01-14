@@ -1,8 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { FRONTEND_URL, PORT } from './configs/env.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
+
+  app.enableCors({
+    origin: FRONTEND_URL,
+    credentials: true,
+  });
+
+  await app.listen(`${PORT}`);
 }
 bootstrap();
