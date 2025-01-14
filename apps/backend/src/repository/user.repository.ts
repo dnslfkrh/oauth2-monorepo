@@ -1,6 +1,6 @@
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/entity/user.entity";
-import { UserDto } from "src/modules/auth/dto/user.dto";
+import { userProps } from "src/types/props";
 import { Repository } from "typeorm";
 
 export class UserRepository {
@@ -13,7 +13,7 @@ export class UserRepository {
         return await this.userRepository.findOne({ where: { email } });
     }
 
-    async createUser(user: UserDto): Promise<User> {
+    async createUser(user: userProps): Promise<User> {
         return await this.userRepository.save(user);
     }
 }
