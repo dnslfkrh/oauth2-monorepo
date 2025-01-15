@@ -23,6 +23,7 @@ export class AuthController {
         }
         const newAccessToken = this.authService.createAccessToken(user);
         resCookie(res, 'accessToken', newAccessToken);
+        return;
     }
 
     /* Google */
