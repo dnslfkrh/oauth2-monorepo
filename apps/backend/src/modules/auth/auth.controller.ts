@@ -1,7 +1,7 @@
 import { Controller, Get, Query, Req, Res, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { Request, Response } from "express";
-import { FRONTEND_URL } from "src/configs/env.config";
+import { FRONTEND_URL } from "src/config/env.config";
 import { userProps } from "src/types/props";
 
 @Controller('auth')
