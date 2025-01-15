@@ -5,7 +5,7 @@ export const GoogleLoginButton = () => {
 
     return (
         <img
-            src="/auth/GoogleAuthButton.png"
+            src="/auth/GoogleLoginButton.png"
             alt="Login with Google"
             onClick={handleGoogleLogin}
             className="login-button"

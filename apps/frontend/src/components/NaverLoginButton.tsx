@@ -5,7 +5,7 @@ export const NaverLoginButton = () => {
     
     return (
         <img
-            src="/auth/NaverAuthButton.png"
+            src="/auth/NaverLoginButton.png"
             alt="Login with Naver"
             onClick={handleNaverLogin}
             className="login-button"
