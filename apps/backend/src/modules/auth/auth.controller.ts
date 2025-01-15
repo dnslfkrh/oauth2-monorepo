@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Req, Res, UseGuards } from "@nestjs/common";
+import { Controller, Get, HttpException, HttpStatus, Query, Req, Res, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { Request, Response } from "express";
 import { FRONTEND_URL } from "src/common/config/env.config";
@@ -19,7 +19,7 @@ export class AuthController {
     async refreshAccessToken(@Req() req: Request, @Res() res: Response) {
         const user = req.user as UserProps;
         if (!user) {
-            return res.status(401).json({ message: 'Unauthorized' });
+            throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
         }
         const newAccessToken = this.authService.createAccessToken(user);
         resCookie(res, 'accessToken', newAccessToken);
