@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import { FRONTEND_URL } from "src/common/config/env.config";
 import { UserProps } from "src/common/types/props";
 import { AuthService } from "./auth.service";
-import { User } from "src/entity/user.entity";
+import { RefreshTokenGuard } from "./guards/refresh.guard";
 import { resCookie } from "src/common/utils/resCookie";
 
 @Controller('auth')
@@ -12,6 +12,18 @@ export class AuthController {
     constructor(
         private readonly authService: AuthService
     ) { }
+
+    /* Refresh Access Token */
+    @Get('token')
+    @UseGuards(RefreshTokenGuard)
+    async refreshAccessToken(@Req() req: Request, @Res() res: Response) {
+        const user = req.user as UserProps;
+        if (!user) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        const newAccessToken = this.authService.createAccessToken(user);
+        resCookie(res, 'accessToken', newAccessToken);
+    }
 
     /* Google */
     @Get('google/callback')

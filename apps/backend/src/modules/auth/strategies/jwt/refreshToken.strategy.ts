@@ -9,7 +9,9 @@ import { Payload } from "src/common/types/payload";
 export class RefreshTokenStrategy extends PassportStrategy(Strategy, "refreshToken") {
     constructor() {
         super({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+            jwtFromRequest: ExtractJwt.fromExtractors([
+                (req) => req.cookies['refreshToken'],
+            ]),
             secretOrKey: REFRESH_TOKEN_SECRET,
             passReqToCallback: true
         });

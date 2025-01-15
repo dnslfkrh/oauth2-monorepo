@@ -5,7 +5,7 @@ import { KAKAO_CALLBACK_URL, KAKAO_CLIENT_ID } from "src/common/config/env.confi
 import { UserService } from "src/modules/user/user.service";
 
 @Injectable()
-export class KakaoStrategy extends PassportStrategy(Strategy, 'kakao') {
+export class KakaoStrategy extends PassportStrategy(Strategy, "kakao") {
     constructor(
         private readonly userService: UserService
     ) {

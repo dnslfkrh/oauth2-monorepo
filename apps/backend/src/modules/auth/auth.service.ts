@@ -12,14 +12,14 @@ export class AuthService {
         private readonly jwtService: JwtService
     ) { }
 
-    private createAccessToken(payload: Payload) {
+    createAccessToken(payload: Payload) {
         return this.jwtService.sign(payload, {
             secret: ACCESS_TOKEN_SECRET,
             expiresIn: ACCESS_TOKEN_EXPIRATION
         });
     }
 
-    private createRefreshToken(payload: Payload) {
+    createRefreshToken(payload: Payload) {
         return this.jwtService.sign(payload, {
             secret: REFRESH_TOKEN_SECRET,
             expiresIn: REFRESH_TOKEN_EXPIRATION

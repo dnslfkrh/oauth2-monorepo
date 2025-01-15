@@ -7,7 +7,7 @@ import { Naver_CALLBACK_URL, NAVER_CLIENT_ID, NAVER_CLIENT_SECRET } from "src/co
 import { UserService } from "src/modules/user/user.service";
 
 @Injectable()
-export class NaverStrategy extends PassportStrategy(Strategy, 'naver') {
+export class NaverStrategy extends PassportStrategy(Strategy, "naver") {
     constructor(
         private readonly userService: UserService,
         private readonly httpService: HttpService
