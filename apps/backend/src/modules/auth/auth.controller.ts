@@ -14,7 +14,7 @@ export class AuthController {
     ) { }
 
     /* Refresh Access Token */
-    @Get('token')
+    @Get('refresh')
     @UseGuards(RefreshTokenGuard)
     async refreshAccessToken(@Req() req: Request, @Res() res: Response) {
         const user = req.user as UserProps;
