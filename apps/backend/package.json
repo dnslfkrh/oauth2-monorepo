@@ -28,6 +28,7 @@
     "@nestjs/typeorm": "^10.0.2",
     "@types/passport": "^1.0.17",
     "@types/passport-google-oauth20": "^2.0.16",
+    "@types/passport-kakao": "^1.0.3",
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "mysql2": "^3.12.0",

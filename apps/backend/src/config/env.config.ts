@@ -16,5 +16,7 @@ export const {
     NAVER_CLIENT_ID,
     NAVER_CLIENT_SECRET,
     Naver_CALLBACK_URL,
+    KAKAO_CLIENT_ID,
+    KAKAO_CALLBACK_URL
 
 } = process.env;

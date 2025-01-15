@@ -22,7 +22,14 @@ export class AuthController {
     /* Naver */
     @Get('naver/callback')
     @UseGuards(AuthGuard('naver'))
-    async naverAuthCallback(@Query('code') code: string, @Res() res: Response) {
+    async naverAuthCallback(@Query('code') code: string, @Req() req: Request & { user: userProps }, @Res() res: Response) {
+        res.redirect(`${FRONTEND_URL}`);
+    }
+
+    /* Kakao */
+    @Get('kakao/callback')
+    @UseGuards(AuthGuard('kakao'))
+    async kakaoAuthCallback(@Req() req: Request & { user: userProps }, @Res() res: Response) {
         res.redirect(`${FRONTEND_URL}`);
     }
 }

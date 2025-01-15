@@ -15,6 +15,8 @@ export class UserService {
             user = await this.userRepository.createUser(newUser);
         }
 
+        console.log(user);
+        
         return user;
     }
 }

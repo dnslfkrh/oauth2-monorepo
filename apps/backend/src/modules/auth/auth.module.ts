@@ -7,6 +7,7 @@ import { UserRepository } from 'src/repository/user.repository';
 import { NaverStrategy } from './strategies/naver.strategy';
 import { HttpModule } from '@nestjs/axios';
 import { UserService } from '../user/user.service';
+import { KakaoStrategy } from './strategies/kakao.strategy';
 
 @Module({
     imports: [
@@ -18,6 +19,7 @@ import { UserService } from '../user/user.service';
         UserRepository,
         GoogleStrategy,
         NaverStrategy,
+        KakaoStrategy
     ],
     controllers: [
         AuthController
