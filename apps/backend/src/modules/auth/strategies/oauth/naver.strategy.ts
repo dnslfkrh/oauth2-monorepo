@@ -3,10 +3,8 @@ import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { Strategy } from "passport-oauth2";
 import { firstValueFrom } from "rxjs";
-import { Naver_CALLBACK_URL, NAVER_CLIENT_ID, NAVER_CLIENT_SECRET } from "src/config/env.config";
+import { Naver_CALLBACK_URL, NAVER_CLIENT_ID, NAVER_CLIENT_SECRET } from "src/common/config/env.config";
 import { UserService } from "src/modules/user/user.service";
-import { UserRepository } from "src/repository/user.repository";
-import { userProps } from "src/types/props";
 
 @Injectable()
 export class NaverStrategy extends PassportStrategy(Strategy, 'naver') {

@@ -1,4 +1,4 @@
-export interface userProps {
+export interface UserProps {
     email: string;
     name: string;
     picture: string;

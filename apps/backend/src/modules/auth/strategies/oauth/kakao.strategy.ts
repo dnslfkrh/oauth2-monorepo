@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { Profile, Strategy } from "passport-kakao";
-import { KAKAO_CALLBACK_URL, KAKAO_CLIENT_ID } from "src/config/env.config";
+import { KAKAO_CALLBACK_URL, KAKAO_CLIENT_ID } from "src/common/config/env.config";
 import { UserService } from "src/modules/user/user.service";
 
 @Injectable()
