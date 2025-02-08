@@ -13,6 +13,7 @@ import { ACCESS_TOKEN_EXPIRATION, ACCESS_TOKEN_SECRET } from 'src/common/config/
 import { AccessTokenStrategy } from './strategies/jwt/accessToken.strategy';
 import { RefreshTokenStrategy } from './strategies/jwt/refreshToken.strategy';
 import { AuthService } from './auth.service';
+import { GitHubStrategy } from './strategies/oauth/github.strategy';
 
 @Module({
     imports: [
@@ -31,7 +32,8 @@ import { AuthService } from './auth.service';
         RefreshTokenStrategy,
         GoogleStrategy,
         NaverStrategy,
-        KakaoStrategy
+        KakaoStrategy,
+        GitHubStrategy
     ],
     controllers: [
         AuthController

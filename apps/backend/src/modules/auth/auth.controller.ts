@@ -9,48 +9,60 @@ import { resCookie } from "src/common/utils/resCookie";
 
 @Controller('auth')
 export class AuthController {
-    constructor(
-        private readonly authService: AuthService
-    ) { }
+  constructor(
+    private readonly authService: AuthService
+  ) { }
 
-    /* Refresh Access Token */
-    @Get('refresh')
-    @UseGuards(RefreshTokenGuard)
-    async refreshAccessToken(@Req() req: Request, @Res() res: Response) {
-        const user = req.user as UserProps;
-        if (!user) {
-            throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
-        }
-        const newAccessToken = this.authService.createAccessToken(user);
-        resCookie(res, 'accessToken', newAccessToken);
-        return;
+  /* Refresh Access Token */
+  @Get('refresh')
+  @UseGuards(RefreshTokenGuard)
+  async refreshAccessToken(@Req() req: Request, @Res() res: Response) {
+    const user = req.user as UserProps;
+    if (!user) {
+      throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
     }
+    const newAccessToken = this.authService.createAccessToken(user);
+    resCookie(res, 'accessToken', newAccessToken);
+    return;
+  }
 
-    /* Google */
-    @Get('google/callback')
-    @UseGuards(AuthGuard('google'))
-    async googleAuthRedirect(@Req() req: Request & { user: UserProps }, @Res() res: Response) {
-        this.authService.setJwtTokens(req.user, res);
-        res.redirect(`${FRONTEND_URL}`);
-    }
+  /* Google */
+  @Get('google/callback')
+  @UseGuards(AuthGuard('google'))
+  async googleAuthRedirect(@Req() req: Request & { user: UserProps }, @Res() res: Response) {
+    this.authService.setJwtTokens(req.user, res);
+    res.redirect(`${FRONTEND_URL}`);
+  }
 
-    @Get('google')
-    @UseGuards(AuthGuard('google'))
-    async googleAuth(@Req() req: Request) { }
+  @Get('google')
+  @UseGuards(AuthGuard('google'))
+  async googleAuth(@Req() req: Request) { }
 
-    /* Naver */
-    @Get('naver/callback')
-    @UseGuards(AuthGuard('naver'))
-    async naverAuthCallback(@Query('code') code: string, @Req() req: Request & { user: UserProps }, @Res() res: Response) {
-        this.authService.setJwtTokens(req.user, res);
-        res.redirect(`${FRONTEND_URL}`);
-    }
+  /* Naver */
+  @Get('naver/callback')
+  @UseGuards(AuthGuard('naver'))
+  async naverAuthCallback(@Query('code') code: string, @Req() req: Request & { user: UserProps }, @Res() res: Response) {
+    this.authService.setJwtTokens(req.user, res);
+    res.redirect(`${FRONTEND_URL}`);
+  }
 
-    /* Kakao */
-    @Get('kakao/callback')
-    @UseGuards(AuthGuard('kakao'))
-    async kakaoAuthCallback(@Req() req: Request & { user: UserProps }, @Res() res: Response) {
-        this.authService.setJwtTokens(req.user, res);
-        res.redirect(`${FRONTEND_URL}`);
-    }
+  /* Kakao */
+  @Get('kakao/callback')
+  @UseGuards(AuthGuard('kakao'))
+  async kakaoAuthCallback(@Req() req: Request & { user: UserProps }, @Res() res: Response) {
+    this.authService.setJwtTokens(req.user, res);
+    res.redirect(`${FRONTEND_URL}`);
+  }
+
+  /* Github */
+  @Get('github')
+  @UseGuards(AuthGuard('github'))
+  async githubAuth(@Req() req: Request) { }
+
+  @Get('github/callback')
+  @UseGuards(AuthGuard('github'))
+  async githubAuthRedirect(@Req() req: Request & { user: UserProps }, @Res() res: Response) {
+    this.authService.setJwtTokens(req.user, res);
+    res.redirect(`${FRONTEND_URL}`);
+  }
 }

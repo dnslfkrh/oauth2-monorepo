@@ -1,5 +1,6 @@
 "use client";
 
+import { GitHubLoginButton } from "@/components/GitHubLoginButton";
 import { GoogleLoginButton } from "@/components/GoogleLoginButton";
 import { KakaoLoginButton } from "@/components/KakaoLoginButton";
 import { NaverLoginButton } from "@/components/NaverLoginButton";
@@ -11,6 +12,7 @@ const LoginPage = () => {
                 <GoogleLoginButton />
                 <NaverLoginButton />
                 <KakaoLoginButton />
+                <GitHubLoginButton />
             </div>
         </div>
     );
